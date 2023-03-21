@@ -10,3 +10,7 @@ class HomeView(View):
 class AboutusView(View):
     def get(self,request):
         return render(request,"app/aboutus.html",locals())
+
+class TopGView(View):
+    def get(self,request):
+        return render(request,"app/topg.html",locals())
