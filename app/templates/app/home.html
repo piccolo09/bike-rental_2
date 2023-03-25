@@ -1,5 +1,5 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block main %}
 
@@ -18,16 +18,14 @@
                 src="https://images.wallpapersden.com/image/download/triumph-bonneville-bike_Zmtta2yUmZqaraWkpJRnamtlrWZpaWU.jpg"
                 alt="First slide" style="height:650px;">
             <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+                <h4>Young riders pick a destination and go… Old riders pick a direction and go.</h4>
             </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
             <img class="d-block w-100" src="https://wallpaperaccess.com/full/2720819.jpg" alt="Second slide"
                 style="height: 650px;">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
+                <h4>You don’t stop riding when you get old, you get old when you stop riding.</h4>
             </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
@@ -35,8 +33,7 @@
                 src="https://s2.best-wallpaper.net/wallpaper/2560x1440/1810/KTM-motorcycle-front-view-river_2560x1440.jpg"
                 alt="Third slide" style="height: 650px;">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+                <h4>Doesn’t matter what you ride, give respect to get respect.</h4>
             </div>
         </div>
     </div>
@@ -52,29 +49,70 @@
 
 <div class="container p-5">
     <div class="row text-center">
-        <div class="col-sm-4 m-">
-            <img src="https://thenounproject.com/api/private/icons/2794064/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABkGBXgqvQEY9Uq6UuZMKee0IKRmiyJI8kIGiLvN2aivPbumPV9Hal11Ey-yLcqbngFnrX-gIA878U_20MxkvIDQQSdNw%3D%3D" width="220" height="220"
-                alt="customer care" loading="lazy">
+        <div class="col-sm-4">
+            <img src="{%static 'img/support.png' %}" width="220" height="220" alt="customer care" loading="lazy">
             <h3 class="inline-flex">Customer Support</h3>
             <h4 class="home-inline__sub-title h5">We are there for you</h4>
         </div>
         <div class="col-sm-4">
-            <img src="https://thenounproject.com/api/private/icons/1688043/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABkGBXgqvQEY9Uq6UuZMKee0IKRmiyJI8kIGiLvN2aivPbumPV9Hal11Ey-yLcqbngFnrX-gIA878U_20MxkvIDQQSdNw%3D%3D" width="220" height="220"
-                alt="payment logo" loading="lazy">
+            <img src="{%static 'img/snap.png' %}" width="220" height="220" alt="payment logo" loading="lazy">
             <h3 class="inline-flex">Easy Payment</h3>
-            <h4 class="home-inline__sub-title h5">Book & Pay Easily  
+            <h4 class="home-inline__sub-title h5">Book & Pay Easily
             </h4>
-
         </div>
         <div class="col-sm-4">
-            <img src="https://thenounproject.com/api/private/icons/4252940/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABkGBXgqvQEY9Uq6UuZMKee0IKRmiyJI8kIGiLvN2aivPbumPV9Hal11Ey-yLcqbngFnrX-gIA878U_20MxkvIDQQSdNw%3D%3D" width="220" height="220"
-                alt="verified bikes" loading="lazy">
+            <img src="{%static 'img/bike.png' %}" width="220" height="220" alt="verified bikes" loading="lazy">
             <h3>Verified Bikes</h3>
             <h4 class="h5">Only Bikes With Clear Documents</h4>
         </div>
     </div>
 </div>
-</div>
+
+<!-- List -->
+<div class="container p-5">
+    <h4 class="text-center">Newly Added Bikes</h4>
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1591378603223-e15b45a81640?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8a3RtJTIwYmlrZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">KTM-390 Bs4</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/originals/28/eb/aa/28ebaa96c68900402dea051dfa3cd7b3.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Duke 790 Bs6</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20220311014949_Duke.jpg&w=700&q=90&c=1"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Duke 390 Bs3</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock main %}

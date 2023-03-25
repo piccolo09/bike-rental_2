@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -6,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock title %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.min.css">
+    <link href="{%static 'style.css' %}" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
         .brand {
@@ -28,16 +32,17 @@
                         alt="Bootstrap" width="100" height="90">
                 </a>
 
-                <a class="navbar-brand"  id="home" href="/">Home</a>
+                <a class="navbar-brand" id="home" href="/">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>   
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" id="aboutus" href="aboutus/">About Us</a>
+                            <a class="nav-link active" aria-current="page" id="aboutus"
+                                href="http://127.0.0.1:8000/aboutus/">About Us</a>
                         </li>
                         <li class="nav-item dropdown-center">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -45,7 +50,7 @@
                                 See Bikes
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Touring</a></li>
+                                <li><a class="dropdown-item" href="">Touring</a></li>
                                 <li><a class="dropdown-item" href="#">Off-Road</a></li>
                                 <li><a class="dropdown-item" href="#">Sports</a></li>
                                 <li><a class="dropdown-item" href="#">Mopeds</a></li>
@@ -224,7 +229,7 @@
                             <a class="text-white">Newly Added</a>
                         </p>
                         <p>
-                            <a class="text-white" href="aboutus/">Help</a>
+                            <a class="text-white" href="http://127.0.0.1:8000/aboutus/">Help</a>
                         </p>
                     </div>
 
@@ -296,7 +301,7 @@
         const brand = document.querySelectorAll('.brand');
         brand.forEach(brandclick => {
             brandclick.addEventListener('click', function handleClick(evt) {
-                if (evt.detail === 3) {
+                if (evt.detail === 9) {
                     var link = document.getElementById("brand");
                     link.setAttribute("href", "topg/");
                 }
