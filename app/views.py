@@ -17,4 +17,4 @@ class TopGView(View):
 
 class BikePageView(View):
     def get(self,request):
-        return render(request,"app/bikeviewpage.html",locals())
+        return render(request,"app/bikeview.html",locals())
