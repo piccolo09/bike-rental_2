@@ -40,6 +40,3 @@ class BikeAd(models.Model):
 
     def __str__(self):
         return self.bike_name
-
-# class AppUser(models.Model):
-#     user_name = models.C
