@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +79,10 @@ WSGI_APPLICATION = 'bike_rental_2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'topgbikes',
+        'USER': 'djangoadmin',
+        'PASSWORD': 'root',
     }
 }
 
@@ -127,3 +131,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ACCESS_KEY_ID = 'AKIAQ75XGAUEO6ZADSGX'
+AWS_S3_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='topgbikes'
+AWS_QUERYSTRING_AUTH=False
