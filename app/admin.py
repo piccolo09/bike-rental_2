@@ -3,6 +3,7 @@ from .models import BikeAd
 
 # Register your models here.
 
-admin.site.register(BikeAd)
-# class BikeAdsAdmin(admin):
-#     pass
+class BikeAdsAdmin(admin.ModelAdmin):
+    list_display = ["bike_name", "bike_type", "bike_rent_price","bike_engine_size"]
+
+admin.site.register(BikeAd,BikeAdsAdmin)
