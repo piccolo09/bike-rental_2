@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" id="aboutus"
+                            <a class="nav-link" aria-current="page" id="aboutus"
                                 href="http://127.0.0.1:8000/aboutus/">About Us</a>
                         </li>
                         <li class="nav-item dropdown-center">
@@ -73,16 +73,20 @@
 
                         <form method="POST" action="/">
                             {% csrf_token %}
-                            <button style="padding: 0; border: none;background: none;text-decoration: none !important;color: #F8F9FA;" name="Logoutbutton">Signout</button>
+                            <button
+                                style="padding: 0; border: none;background: none;text-decoration: none !important;color: #F8F9FA;"
+                                name="Logoutbutton">Signout</button>
                             <i class="px-2"></i>
                         </form>
+
+                        <a href="http://127.0.0.1:8000/myprofile/" style="text-decoration: none !important;color: #F8F9FA;">MyProfile</a>
+                        <i class="px-2"></i>
 
                         {% else %}
 
                         <a href="/" data-bs-toggle="modal" data-bs-target="#signinModal"
                             style="text-decoration: none !important;color: #F8F9FA;">Signin</a>
                         <i class="px-2"></i>
-
                         <a href="/" data-bs-toggle="modal" data-bs-target="#signupModal"
                             style="text-decoration: none !important;color: #F8F9FA;">Signup</a>
                         <i class="px-2"></i>
@@ -107,21 +111,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- <div class="mb-3">
-                                <label for="SigninInputEmail" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="SigninInputEmail" name="SigninInputEmail"
-                                    aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">
-                                    <p>We'll never share your email with anyone else.
-                                </div>
-                            </div> -->
                             <div class="mb-3">
-                                <label for="SigninInputEmail" class="form-label">Email address</label>
-                                <input type="text" class="form-control" id="SigninInputEmail" name="SigninInputEmail"
-                                    aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">
-                                    <p>We'll never share your email with anyone else.
-                                </div>
+                                <label for="SigninInputUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="SigninInputUsername"
+                                    name="SigninInputUsername">
                             </div>
                             <div class="mb-3">
                                 <label for="SigninInputPassword" class="form-label">Password</label>
@@ -157,8 +150,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="SignupInputName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="SignupInputName" name="SignupInputName">
+                                <label for="SignupInputUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="SignupInputUsername"
+                                    name="SignupInputUsername">
                             </div>
                             <div class="mb-3">
                                 <label for="SignupInputEmail" class="form-label">Email address</label>
@@ -177,6 +171,10 @@
                                     contain spaces, special characters, or emoji.
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="SignupInputPasswordConfirm" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="SignupInputPasswordConfirm" name="SignupInputPasswordConfirm">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -189,6 +187,7 @@
     </div>
 
     {% block main %}
+
     {% endblock main %}
 
     <!-- Footer -->
