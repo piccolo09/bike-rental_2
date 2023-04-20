@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-e68+jur*^decqm*c((vfw)s)jjx*-f4h(f!$pzxr-%!75w&u(t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,21 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'storages',
+    'crispy_forms',
+    'crispy_bootstrap5',
+
+
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+AUTH_USER_MODEL = 'app.MyUser'
+
+SITE_URL = 'http://127.0.0.1:8000/'
+
+# LOGIN_URL = 'home'
+# LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,12 +67,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SECURE_SSL_REDIRECT=False
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
 ROOT_URLCONF = 'bike_rental_2.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +152,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ACCESS_KEY_ID = 'AKIAQ75XGAUEJEERHKOH'
+AWS_S3_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='topgbikes'
+AWS_QUERYSTRING_AUTH=False
