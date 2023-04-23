@@ -28,6 +28,6 @@ class MyUserAdmin(UserAdmin):
             'fields': ('last_login', 'date_joined')
         }),
     )
-    list_display = ["username","first_name", "last_name", "email","mobile","is_active"]
+    list_display = ["id","username","first_name", "last_name", "email","mobile","is_active"]
 
 admin.site.register(MyUser,MyUserAdmin)

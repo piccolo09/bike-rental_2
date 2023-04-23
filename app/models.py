@@ -7,12 +7,15 @@ class MyUser(AbstractUser):
     mobile = models.CharField(max_length=50,blank=True)
     address = models.TextField(blank=True)
 
+    def __str__(self):
+        return str(self.id)
+
 class BikeAd(models.Model):
     BIKETYPE_CHOICE = (
-        ("Touring", "Touring"),
-        ("Sports", "Sports"),
-        ("Mopads", "Mopads"),
-        ("Naked", "Naked"),
+        ("touring", "touring"),
+        ("sport", "sport"),
+        ("mopad", "mopad"),
+        ("naked", "naked"),
     )
 
     BIKEBRAND_CHOICE = (
@@ -41,7 +44,7 @@ class BikeAd(models.Model):
     bike_has_abs = models.CharField(max_length=50, choices=YESNO_CHOICE, default="NO")
     bike_topspeed = models.IntegerField()
     bike_image = models.ImageField(upload_to='uploads/')
-    # bikead_ownerID = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+    bikead_ownerID = models.ForeignKey(MyUser, on_delete=models.CASCADE,default=2)
     is_active = models.BooleanField(default=True, verbose_name='active')
 
 
