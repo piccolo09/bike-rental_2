@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
-from .views import HomeView,AboutusView,TopGView,BikePageView,MyProfileView
+from .views import HomeView,AboutusView,TopGView,BikePageView,MyProfileView,BikelistingPageView
 urlpatterns = [
 
     #Home View
@@ -10,7 +10,10 @@ urlpatterns = [
     path('aboutus/',AboutusView.as_view(),name="aboutus"),
     
     #View Bike Individually
-    path('bikeview/',BikePageView.as_view(),name="bikeview"),
+    path('bikeview/<int:id>',BikePageView.as_view(),name="bikeview"),
+
+    #All Bike VIew 
+    path('bikelisting/<slug:biketype>',BikelistingPageView.as_view(),name="allbikeview"),
 
     #Individual User View
     path('myprofile/',MyProfileView.as_view(),name="myprofile"),
