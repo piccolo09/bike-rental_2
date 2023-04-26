@@ -2,145 +2,136 @@
 {% block title %}View{% endblock title %}
 {% block main %}
 
-<div class="container p-3">
-    <div class="card border-4">
-        <div class="card-body">
-            <div class="container px-4">
-                <h2 class="card-title">Duke 390</h2>
-                <h5 class="card-subtitle">Naked | Bs6</h5>
+<div class="card">
+    {% if not request.user.is_authenticated %}
+    <div class="alert alert-danger" role="alert">
+        Login to get owner details!!
+    </div>
+    {% endif %}
+    {% if messages %}
+    <div class="container-fluid">
+        {% for message in messages %}
+            {%if message.tags == 'error' %}
+            <div class="alert alert-warning" role="alert">
+                <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
             </div>
-            <div class="container py-3">
-                <div class="row gx-5">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="container-fluid px-2">
-                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="https://uhdwallpapers.org/uploads/converted/19/12/01/ktm-890-duke-r-5k-wallpaper-2560x1440_899447-mm-90.jpg"
-                                            class="img-fluid rounded-start" class="d-block w-100" alt="img 1"
-                                            style="height: 550px;">
+            {% else %}
+            <div class="alert alert-success" role="alert">
+                <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="card-body">
+        <div class="container px-3 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
+                        src="https://topgbikes.s3.ap-south-1.amazonaws.com/{{availablead.bike_image}}" alt="..." />
+                </div>
+                <div class="col-md-6">
+                    <div class="small mb-1">{{availablead.bike_brand}}</div>
+                    <h1 class="display-5 fw-bolder">{{availablead.bike_name}} || {{availablead.bike_type|capfirst}}</h1>
+                    <div class="fs-5 mb-5">
+                        <!-- <span class="text-danger text-decoration-line-through ">gst not inculded</span> -->
+                        <span><i class="bi bi-currency-rupee"></i>{{availablead.bike_rent_price}}</span>
+                    </div>
+                    <p class="lead">{{availablead.bike_discription}}</p>
+                    <div class="d-flex py-2">
+                        {% if request.user.is_authenticated %}
+                        <a href="/wishlist/add_to_whishlist/{{availablead.id}}"
+                            class="btn btn-outline-danger flex-shrink-0" type="button">
+                            <i class="bi bi-heart"></i>
+                            Whishlist
+                        </a>
+                        <i class="p-2"></i>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-primary flex-shrink-0" data-bs-toggle="modal"
+                            data-bs-target="#ownerModal">
+                            Get Owner Details.
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="ownerModal" tabindex="-1" aria-labelledby="ownerModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="ownerModalLabel">Owner Details</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="https://i.pinimg.com/originals/28/eb/aa/28ebaa96c68900402dea051dfa3cd7b3.jpg"
-                                            class="img-fluid rounded-start" class="d-block w-100" alt="img 2"
-                                            style="height: 550px;">
+                                    <div class="modal-body">
+                                        <i class="fw-bolder">Name : {{bikeowner.first_name}}
+                                            {{bikeowner.last_name}}</i><br>
+                                        <i class="fw-bolder">Email : {{bikeowner.email}}</i><br>
+                                        <i class="fw-bolder">Mobile : {{bikeowner.mobile}}</i><br>
+                                        <i class="fw-bolder">Address : {{bikeowner.address}}</i><br>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20220311014949_Duke.jpg&w=700&q=90&c=1"
-                                            class="img-fluid rounded-start" class="d-block w-100" alt="img 3"
-                                            style="height: 550px;">
+                                    <div class="modal-footer">
+                                        <button type="reset" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <h4 class="box-title mt-5">Product description</h4>
-                        <p>Lorem Ipsum available,but the majority have suffered alteration in some form,by
-                            injected
-                            humour,or randomised words which don't look even slightly believable.but the
-                            majority have
-                            suffered alteration in some form,by injected humour</p>
-                        <h2 class="mt-5">
-                            <i class="bi bi-currency-rupee"></i><span> 2000.00 </span>
-                        </h2>
-                        <button class="btn btn-danger btn-rounded mr-1" data-toggle="tooltip" title=""
-                            data-original-title="Add to cart">
-                            <i class="bi bi-heart"></i>
-                        </button>
-                        <button class="btn btn-primary btn-rounded">Buy Now</button>
-                        <h3 class="box-title mt-5">Key Highlights</h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-check-all text-success"></i>Sturdy structure</li>
-                            <li><i class="bi bi-check-all text-success"></i>Designed to foster easy portability</li>
-                            <li><i class="bi bi-check-all text-success"></i>Perfect furniture to flaunt your wonderful collectibles</li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="box-title mt-5">General Info</h3>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-product">
-                                <tbody>
-                                    <tr>
-                                        <td width="390">Brand</td>
-                                        <td>Stellar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Delivery Condition</td>
-                                        <td>Knock Down</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Seat Lock Included</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>Office Chair</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Style</td>
-                                        <td>Contemporary&amp;Modern</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wheels Included</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Upholstery Included</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Upholstery Type</td>
-                                        <td>Cushion</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Head Support</td>
-                                        <td>No</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Suitable For</td>
-                                        <td>Study&amp;Home Office</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adjustable Height</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Model Number</td>
-                                        <td>F01020701-00HT744A06</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Armrest Included</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Care Instructions</td>
-                                        <td>Handle With Care,Keep In Dry Place,Do Not Apply Any Chemical For
-                                            Cleaning.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Finish Type</td>
-                                        <td>Matte</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <h3 class="box-title mt-5">Key Highlights</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-check-all text-success"></i>Best Cost</li>
+                        <li><i class="bi bi-check-all text-success"></i>Just Serviced</li>
+                        <li><i class="bi bi-check-all text-success"></i>Fule Pump Cleaned</li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="box-title mt-5">General Info</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-product">
+                    <tbody>
+                        <tr>
+                            <td width="390">Brand</td>
+                            <td>{{availablead.bike_brand}}</td>
+                        </tr>
+                        <tr>
+                            <td>Bike Model</td>
+                            <td>{{availablead.bike_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Engine Size</td>
+                            <td>{{availablead.bike_engine_size}} CC</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>{{availablead.bike_type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Milage</td>
+                            <td>{{availablead.bike_mileage}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tank Size</td>
+                            <td>{{availablead.bike_fueltank_size}}</td>
+                        </tr>
+                        <tr>
+                            <td>Top Speed</td>
+                            <td>{{availablead.bike_topspeed}}kmph</td>
+                        </tr>
+                        <tr>
+                            <td>ABS</td>
+                            <td>{{availablead.bike_has_abs}}</td>
+                        </tr>
+                        <tr>
+                            <td>Bike Weight</td>
+                            <td>{{availablead.bike_weight}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock main %}

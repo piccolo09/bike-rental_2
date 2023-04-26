@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Update{% endblock title %}
+{% block main %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title text-center">Update Ad</h4>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{myadform|crispy}}
+            <button type="submit" class="btn btn-primary" name="Signinbutton">Update</button>
+        </form>
+    </div>
+</div>
+<script>
+    var x = document.getElementById("div_id_bikead_ownerID");
+    x.style.display = "none";
+
+    var y = document.getElementById("div_id_user_wishlist");
+    y.style.display = "none";
+    
+    let element = document.getElementById("id_bikead_ownerID");
+    element.value = "{{user_id}}";
+
+</script>
+{% endblock main %}

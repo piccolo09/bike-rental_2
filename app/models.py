@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 
@@ -12,19 +13,19 @@ class MyUser(AbstractUser):
 
 class BikeAd(models.Model):
     BIKETYPE_CHOICE = (
-        ("touring", "touring"),
-        ("sport", "sport"),
-        ("mopad", "mopad"),
-        ("naked", "naked"),
+        ('touring', 'touring'),
+        ('naked', 'naked'),
+        ('sport', 'sport'),
+        ('moped', 'moped')
     )
 
     BIKEBRAND_CHOICE = (
-        ("KTM", "KTM"),
-        ("BAJAJ", "BAJAJ"),
-        ("BMW", "BMW"),
-        ("TVS", "TVS"),
-        ("HERO", "HERO"),
-        ("HONDA", "HONDA"),
+        ('KTM', 'KTM'),
+        ('BAJAJ','BAJAJ'),
+        ('BMW', 'BMW'),
+        ('TVS', 'TVS'),
+        ('HERO', 'HERO'),
+        ('HONDA', 'HONDA'),
     )
 
     YESNO_CHOICE = (
@@ -33,7 +34,7 @@ class BikeAd(models.Model):
     )
 
     bike_name = models.CharField(max_length=50)
-    bike_type = models.CharField(max_length=50, choices=BIKETYPE_CHOICE, default="")
+    bike_type = models.CharField(max_length=50, choices=BIKETYPE_CHOICE, default='naked')
     bike_discription = models.TextField()
     bike_rent_price = models.FloatField()
     bike_brand = models.CharField(max_length=50, choices=BIKEBRAND_CHOICE, default="")
@@ -46,6 +47,7 @@ class BikeAd(models.Model):
     bike_image = models.ImageField(upload_to='uploads/')
     bikead_ownerID = models.ForeignKey(MyUser, on_delete=models.CASCADE,default=2)
     is_active = models.BooleanField(default=True, verbose_name='active')
+    user_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="user_wishlist",blank=True)
 
 
 

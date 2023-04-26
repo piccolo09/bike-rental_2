@@ -15,14 +15,14 @@
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
             <img class="d-block w-100"
-                src="https://images.wallpapersden.com/image/download/triumph-bonneville-bike_Zmtta2yUmZqaraWkpJRnamtlrWZpaWU.jpg"
+                src="https://topgbikes.s3.ap-south-1.amazonaws.com/banner/banner1.jpg"
                 alt="First slide" style="height:650px;">
             <div class="carousel-caption d-none d-md-block">
                 <h4>Young riders pick a destination and go… Old riders pick a direction and go.</h4>
             </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-            <img class="d-block w-100" src="https://wallpaperaccess.com/full/2720819.jpg" alt="Second slide"
+            <img class="d-block w-100" src="https://topgbikes.s3.ap-south-1.amazonaws.com/banner/banner3.jpg" alt="Second slide"
                 style="height: 650px;">
             <div class="carousel-caption d-none d-md-block">
                 <h4>You don’t stop riding when you get old, you get old when you stop riding.</h4>
@@ -30,7 +30,7 @@
         </div>
         <div class="carousel-item" data-bs-interval="5000">
             <img class="d-block w-100"
-                src="https://s2.best-wallpaper.net/wallpaper/2560x1440/1810/KTM-motorcycle-front-view-river_2560x1440.jpg"
+                src="https://topgbikes.s3.ap-south-1.amazonaws.com/banner/banner2.jpg"
                 alt="Third slide" style="height: 650px;">
             <div class="carousel-caption d-none d-md-block">
                 <h4>Doesn’t matter what you ride, give respect to get respect.</h4>
@@ -56,8 +56,8 @@
         </div>
         <div class="col-sm-4">
             <img src="{%static 'img/snap.png' %}" width="220" height="220" alt="payment logo" loading="lazy">
-            <h3 class="inline-flex">Easy Payment</h3>
-            <h4 class="home-inline__sub-title h5">Book & Pay Easily
+            <h3 class="inline-flex">Ask to Owner</h3>
+            <h4 class="home-inline__sub-title h5">Eases contact with owner
             </h4>
         </div>
         <div class="col-sm-4">
@@ -69,49 +69,27 @@
 </div>
 
 <!-- List -->
-<div class="container p-5">
+<div class="container p-5" id="newlyAdd">
     <h4 class="text-center">Newly Added Bikes</h4>
     <div class="container p-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for eachad in availableads %}
             <div class="col">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1591378603223-e15b45a81640?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8a3RtJTIwYmlrZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                    <img src="https://topgbikes.s3.ap-south-1.amazonaws.com/{{eachad.bike_image}}"
                         class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">KTM-390 Bs4</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
+                        <h5 class="card-title">{{eachad.bike_name}}</h5>
+                        <p class="card-text">{{eachad.bike_discription}}</p>
+                        <a href="{{settings.SITE_URL}}/bikeview/{{eachad.id}}" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://i.pinimg.com/originals/28/eb/aa/28ebaa96c68900402dea051dfa3cd7b3.jpg"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Duke 790 Bs6</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20220311014949_Duke.jpg&w=700&q=90&c=1"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Duke 390 Bs3</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <a href="http://127.0.0.1:8000/bikeview" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+
+
 
 {% endblock main %}

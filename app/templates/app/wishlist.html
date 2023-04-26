@@ -1,0 +1,93 @@
+{% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}My Wishlist{% endblock title %}
+{% block main %}
+{% if not request.user.is_authenticated %}
+<div class="container-fluid">
+    <div class="alert alert-danger" role="alert">
+        Access Denied!!
+        <br>
+        Login to access this page.
+    </div>
+</div>
+{% else %}
+{% if messages %}
+<div class="container-fluid">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<section style="background-color: #eee; min-height: 100vh; display: flex; flex-direction: column;">
+    <div class="container py-5">
+        {% for eachad in wishlist_bikes %}
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-12 col-xl-10">
+                <div class="card shadow-0 border rounded-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <img src="https://topgbikes.s3.ap-south-1.amazonaws.com/{{eachad.bike_image}}"
+                                        class="w-100" />
+                                    <a href="#!">
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <h5>{{eachad.bike_name}}</h5>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span>{{eachad.bike_type|capfirst}}</span>
+                                </div>
+                                <p class="text-truncate mb-4 mb-md-0">
+                                    {{eachad.bike_discription}}
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                <div class="d-flex flex-row align-items-center mb-1">
+                                    <h4 class="mb-1 me-1"><i class="bi bi-currency-rupee"></i>{{eachad.bike_rent_price}}
+                                    </h4>
+                                </div>
+                                <div class="d-flex flex-column mt-4">
+                                    <!-- <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#managead">Edit Details</button> -->
+                                    <a href="{{SITE_URL}}/bikeview/{{eachad.id}}" class="btn btn-primary">View Details</a>
+
+                                    <a href="/wishlist/add_to_whishlist/{{eachad.id}}" class="btn btn-danger mt-2">Remove</a>
+                                    {% if eachad.is_active %}
+                                    <button class="btn btn-success btn-sm mt-2" type="button">
+                                        Ad is Active
+                                    </button>
+                                    {% else %}
+                                    <button class="btn btn-secondary btn-sm mt-2" type="button">
+                                        Ad is Deactive
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    var x = document.getElementById("div_id_bikead_ownerID");
+    x.style.display = "none";
+
+    let element = document.getElementById("id_bikead_ownerID");
+    element.value = "{{user_id}}";
+
+</script>
+
+{% endif %}
+
+{% endblock main %}

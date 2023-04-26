@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
-from .views import HomeView,AboutusView,TopGView,BikePageView,MyProfileView,BikelistingPageView
+from .views import *
 urlpatterns = [
 
     #Home View
@@ -18,9 +18,20 @@ urlpatterns = [
     #Individual User View
     path('myprofile/',MyProfileView.as_view(),name="myprofile"),
 
+    #Individual User Ads
+    path('managemyads/',MyAdsView.as_view(),name="managemyads"),
+
+    path('myad/<int:id>',UpdateAds.as_view(),name="updatead"),
+
+    #WishList
+    path('wishlist/add_to_whishlist/<int:id>',UserWishActionView.as_view(),name="user_wishlist"),
+
+    path('wishlist/',UserWishView.as_view(),name="see_wishlist"),
+
+
     #Easter Egg
     path('topg/',TopGView.as_view(),name="TopG"),
 
-]
+]   
 
 
